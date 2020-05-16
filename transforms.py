@@ -35,7 +35,10 @@ def FGPA(delta, params):
 
     
 def YJ_Layer(layer, eta_input, eps_input, beta_input, mean_input, eta_constraint=[-5., 5.], eps_constraint=[-1.+1e-50, -1e-50], beta_constraint=[-5, -5], vary_mean=True, vary_beta=True):
+<<<<<<< HEAD
     
+=======
+>>>>>>> 63794d7f0d6d265f6a955c834c14778858ddc7ec
     eta = tf.Variable(eta_input, name=layer + "_eta", dtype=tf.float64, constraint= lambda t: tf.clip_by_value(t, eta_constraint[0], eta_constraint[1]))
     eps = tf.Variable(eps_input, name=layer + "_eps", dtype=tf.float64, constraint= lambda t: tf.clip_by_value(t, eps_constraint[0], eps_constraint[1]))
     
@@ -51,6 +54,7 @@ def YJ_Layer(layer, eta_input, eps_input, beta_input, mean_input, eta_constraint
     
     return np.array([eta, eps, beta, mean])
 
+<<<<<<< HEAD
 def YJ_PassThru_Layer(layer, beta_input):
     eta =  tf.placeholder(tf.float64, name=layer + "_eta")
     eps =  tf.placeholder(tf.float64, name=layer + "_eps")
@@ -58,6 +62,8 @@ def YJ_PassThru_Layer(layer, beta_input):
     mean =  tf.placeholder(tf.float64, name=layer + "_mean")
     
     return np.array([eta, eps, beta, mean])
+=======
+>>>>>>> 63794d7f0d6d265f6a955c834c14778858ddc7ec
 
 def YJ(data, params, recursion_num):
     eta = params[0]
@@ -196,12 +202,15 @@ def log_likilihood_Layer(layer, input_hess, vary_hess=True):
          hess = tf.constant(np.array([input_hess]))
     return hess
 
+<<<<<<< HEAD
 def log_likilihood_PassThru_Layer(layer):
 
     hess = tf.placeholder(tf.float64, name=layer + "_hess")
                        
     return hess
 
+=======
+>>>>>>> 63794d7f0d6d265f6a955c834c14778858ddc7ec
 def log_likilihood(F, r, params):
     #derivative of r for the log likelihood
     r_g = tf.gradients(r, F)
@@ -221,4 +230,8 @@ def log_likilihood(F, r, params):
     
     loss = tf.reduce_sum(loss_piece)
     
+<<<<<<< HEAD
     return loss, outline, hess, r_g
+=======
+    return loss, outline, hess, r_g
+>>>>>>> 63794d7f0d6d265f6a955c834c14778858ddc7ec
